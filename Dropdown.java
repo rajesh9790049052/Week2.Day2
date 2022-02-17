@@ -1,4 +1,4 @@
-package Week2.Day2.Assignments;
+package Week2.Day2.Classroom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,26 +11,27 @@ public class Dropdown {
 	
 	public static void main(String[] args) {
 		
+		
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver = new ChromeDriver();
+		
+		driver.get("http://leaftaps.com/opentaps/control/main");
 		driver.manage().window().maximize();
-		driver.get("http://leafground.com/pages/Dropdown.html");
-		WebElement dd1 = driver.findElement(By.id("dropdown1"));
-		Select drop = new Select(dd1);
-		drop.selectByIndex(1);
-		WebElement dd2 = driver.findElement(By.name("dropdown2"));
-		Select drop2 = new Select(dd2);
-		drop2.selectByVisibleText("Selenium");
-		WebElement dd3 = driver.findElement(By.id("dropdown3"));
-		Select drop3 = new Select(dd3);
-		drop3.selectByValue("1");
-		WebElement dd4 = driver.findElement(By.className("dropdown"));
-		Select noofdrop = new Select(dd4);
-		System.out.println("Number of dropdown : " + noofdrop.getOptions().size());
-		WebElement dd5 = driver.findElement(By.xpath("((//div[@class ='example'])[5])/select"));
-		dd5.sendKeys("Selenium");
-		WebElement dd6 = driver.findElement(By.xpath("((//div[@class='example'])[6])/select"));
-		dd6.sendKeys("Selenium");	
+		driver.findElement(By.id("username")).sendKeys("Demosalesmanager");
+		driver.findElement(By.id("password")).sendKeys("crmsfa");
+		driver.findElement(By.className("decorativeSubmit")).click();
+		driver.findElement(By.linkText("CRM/SFA")).click();
+		driver.findElement(By.linkText("Leads")).click();
+		driver.findElement(By.linkText("Create Lead")).click();
+		WebElement source= driver.findElement(By.id("createLeadForm_dataSourceId"));
+		Select sourceid = new Select(source);
+		sourceid.selectByVisibleText("Employee");
+		WebElement industry= driver.findElement(By.id("createLeadForm_industryEnumId"));
+		Select industryid = new Select(industry);
+		industryid.selectByValue("IND_FINANCE");
+		WebElement ownership= driver.findElement(By.id("createLeadForm_ownershipEnumId"));
+		Select ownershipid = new Select(ownership);
+		ownershipid.selectByIndex(2);
 		
 	}
 
